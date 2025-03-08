@@ -1,132 +1,210 @@
 # Cryptography Script Runner
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Python](https://img.shields.io/badge/python-3.6%2B-blue)
 ![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
 
-A command-line tool implementing classic cryptography algorithms for educational purposes.
+A command-line tool implementing classical cryptographic algorithms for educational purposes and text encryption/decryption.
 
 ## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
+- [Project Structure](#project-structure)
 - [Supported Algorithms](#supported-algorithms)
   - [Caesar Cipher](#caesar-cipher)
   - [MonoAlphabetic Cipher](#monoalphabetic-cipher)
   - [Vigenère Cipher](#vigenère-cipher)
 - [Installation](#installation)
 - [Usage](#usage)
-  - [Syntax](#syntax)
+  - [Command Syntax](#command-syntax)
   - [Examples](#examples)
+- [Advanced Features](#advanced-features)
 - [Contributing](#contributing)
 - [License](#license)
 
 ## Overview
 
-This tool provides a simple interface to encrypt and decrypt text using three classic cryptographic algorithms. It's designed for educational purposes to demonstrate the principles of basic encryption techniques.
+This project provides a unified interface to several classical cryptographic algorithms. Designed for educational purposes, it demonstrates fundamental encryption principles through a clean, modular implementation. Each cipher is implemented as a separate module with consistent interfaces for encryption and decryption operations.
 
 ## Features
 
-- Easy-to-use command-line interface
-- Support for multiple classic ciphers
-- Both encryption and decryption functionality
-- Minimal dependencies
+- **Command-line Interface**: Simple syntax for quick encryption/decryption operations
+- **Multiple Cipher Support**: Implementation of three classic cryptographic algorithms
+- **Modular Design**: Clean separation between cipher implementations
+- **Text Analysis Tools**: Character frequency analysis and cipher detection
+- **Visualization**: Graphical analysis of encrypted text patterns (with Vigenère)
+
+## Project Structure
+
+```
+.
+├── ciphers.py              # Main CLI interface
+├── caesar_cipher.py        # Implementation of Caesar cipher
+├── monoalphabetic_cipher.py # Implementation of MonoAlphabetic cipher
+└── vigenere_cipher.py      # Implementation of Vigenère cipher with analysis tools
+```
 
 ## Supported Algorithms
 
 ### Caesar Cipher
 
-The **Caesar Cipher** is a simple substitution algorithm where each letter in the text is shifted by a fixed number of positions in the alphabet. The rotation is the number that defines the shift. For example, if the rotation is 3, the letter "a" will be replaced by "d", "b" by "e", and so on.
+The **Caesar Cipher** is a substitution cipher where each letter is shifted a fixed number of positions down the alphabet.
 
-**Example**:
-- Original text: "joao"
-- Rotation: 8
-- Encrypted text: "wvhf"
+**Implementation Details:**
+- Simple character rotation with modular arithmetic
+- Preserves letter case (uppercase/lowercase)
+- Maintains non-alphabetic characters unchanged
+
+**Example:**
+```
+Plaintext:  "joao"
+Rotation:   8
+Ciphertext: "wvhf"
+```
 
 ### MonoAlphabetic Cipher
 
-The **MonoAlphabetic Cipher** is a type of substitution cipher where each letter of the alphabet is mapped to another letter of the alphabet according to a provided key. The key is a string that replaces the letters of the original alphabet.
+The **MonoAlphabetic Cipher** substitutes each letter according to a key-based mapping, providing more security than Caesar cipher.
 
-**Example**:
-- Original text: "joao"
-- Key: "ana"
-- Encrypted text: "rprp"
+**Implementation Details:**
+- Key-based character substitution
+- Automatic key completion and duplicate character handling
+- Statistical analysis tools for character frequency
 
-In this case, the letter "j" is replaced by the corresponding letter in the key "ana", and so on.
+**Example:**
+```
+Plaintext:  "joao"
+Key:        "ana"
+Ciphertext: "rprp"
+```
 
 ### Vigenère Cipher
 
-The **Vigenère Cipher** is a polyalphabetic encryption algorithm that uses a key composed of multiple letters. Unlike the Caesar Cipher, which applies the same shift to all letters, the Vigenère Cipher applies a different shift for each letter, depending on the position of the letter in the key. The key is repeated throughout the text, and each letter of the text is shifted based on the value of the corresponding letter in the key.
+The **Vigenère Cipher** is a polyalphabetic substitution method using a repeating key for variable character shifts.
 
-**Example**:
-- Original text: "joao"
-- Key: "ana"
-- Encrypted text: "xqpy"
+**Implementation Details:**
+- Key-based variable shift values
+- Preservation of non-alphabetic characters
+- Advanced cryptanalysis tools including:
+  - Coincidence index calculation
+  - Periodicity analysis with graphical output
 
-The key "ana" is repeated to match the length of the text, and each letter of the text is shifted according to the position of the corresponding letter in the key.
+**Example:**
+```
+Plaintext:  "joao"
+Key:        "ana"
+Ciphertext: "xqpy"
+```
 
 ## Installation
 
-1. Clone the repository to your computer.
-2. Make sure the cryptography scripts are in the same directory as the main script (`ciphers.py`).
-3. If you don't have the necessary libraries installed yet, install them:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/cryptography-script-runner.git
+   cd cryptography-script-runner
+   ```
 
+2. Install dependencies:
    ```bash
    pip install matplotlib
    ```
 
+3. Verify installation by running a test command:
+   ```bash
+   python ciphers.py ceaser hello 3
+   ```
+
 ## Usage
 
-The script allows you to run any of the three encryption algorithms directly from the command line. Simply pass the name of the desired algorithm, the text to be encrypted/decrypted, and a key or rotation.
+### Command Syntax
 
-### Syntax
+The general command format follows this pattern:
 
 ```bash
-python ciphers.py <cipher_name> <text> <key or rotation>
+python ciphers.py <cipher_name> <text> <key_or_rotation>
 ```
 
 Where:
-- `<cipher_name>`: the name of the cipher to run: `ceaser`, `mono`, or `vigenere`.
-- `<text>`: the text you want to encrypt or decrypt.
-- `<key or rotation>`: for the **Caesar Cipher** it is the numerical rotation (an integer). For **MonoAlphabetic** and **Vigenère**, you need to provide an encryption key (a string).
+- `<cipher_name>`: Algorithm to use (`ceaser`, `mono`, or `vigenere`)
+- `<text>`: Text to encrypt/decrypt
+- `<key_or_rotation>`: Numeric rotation for Caesar, or string key for others
 
 ### Examples
 
-#### 1. **Caesar Cipher**
+#### 1. Caesar Cipher
 
 ```bash
-python cipher.py ceaser joao 8
+python ciphers.py ceaser joao 8
 ```
+
+Output:
 ```
 ***** CAESAR CIPHER *****
 Encrypted Text: wvhf
 Decrypted Text: joao
 ```
 
-#### 2. **MonoAlphabetic Cipher**
+#### 2. MonoAlphabetic Cipher
 
 ```bash
-python cipher.py mono joao ana
+python ciphers.py mono joao ana
 ```
+
+Output:
 ```
 ***** MONOALPHABETIC CIPHER *****
 Encrypted Text: rprp
 Decrypted Text: joao
 ```
 
-#### 3. **Vigenère Cipher**
+#### 3. Vigenère Cipher
 
 ```bash
-python cipher.py vigenere joao ana
+python ciphers.py vigenere joao ana
 ```
+
+Output:
 ```
 ***** VIGENERE CIPHER *****
 Encrypted Text: xqpy
 Decrypted Text: joao
 ```
 
+## Advanced Features
+
+### Frequency Analysis
+
+The MonoAlphabetic cipher implementation includes tools for frequency analysis:
+
+```python
+from monoalphabetic_cipher import count_characters, count_digraphs
+
+encrypted_text = "your_encrypted_text"
+count_characters(encrypted_text)  # Displays character frequency
+count_digraphs(encrypted_text)    # Displays digraph (2-letter combination) frequency
+```
+
+### Vigenère Analysis
+
+The Vigenère implementation includes tools for cryptanalysis:
+
+```python
+from vigenere_cipher import analyze_periodicity
+
+encrypted_text = "your_encrypted_text"
+analyze_periodicity(encrypted_text)  # Generates a plot for key length detection
+```
+
 ## Contributing
 
-Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) first.
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
