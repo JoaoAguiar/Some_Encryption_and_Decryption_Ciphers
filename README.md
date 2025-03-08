@@ -1,12 +1,37 @@
 # Cryptography Script Runner
 
-This script allows you to run three classic cryptography algorithms in a simple way, directly from the command line. The supported algorithms are:
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
 
-1. **Caesar Cipher**
-2. **MonoAlphabetic Cipher**
-3. **Vigenère Cipher**
+A command-line tool implementing classic cryptography algorithms for educational purposes.
 
-## Cryptography Types
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Supported Algorithms](#supported-algorithms)
+  - [Caesar Cipher](#caesar-cipher)
+  - [MonoAlphabetic Cipher](#monoalphabetic-cipher)
+  - [Vigenère Cipher](#vigenère-cipher)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Syntax](#syntax)
+  - [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Overview
+
+This tool provides a simple interface to encrypt and decrypt text using three classic cryptographic algorithms. It's designed for educational purposes to demonstrate the principles of basic encryption techniques.
+
+## Features
+
+- Easy-to-use command-line interface
+- Support for multiple classic ciphers
+- Both encryption and decryption functionality
+- Minimal dependencies
+
+## Supported Algorithms
 
 ### Caesar Cipher
 
@@ -49,7 +74,7 @@ The key "ana" is repeated to match the length of the text, and each letter of th
    pip install matplotlib
    ```
 
-## How to Use
+## Usage
 
 The script allows you to run any of the three encryption algorithms directly from the command line. Simply pass the name of the desired algorithm, the text to be encrypted/decrypted, and a key or rotation.
 
@@ -64,7 +89,7 @@ Where:
 - `<text>`: the text you want to encrypt or decrypt.
 - `<key or rotation>`: for the **Caesar Cipher** it is the numerical rotation (an integer). For **MonoAlphabetic** and **Vigenère**, you need to provide an encryption key (a string).
 
-### Usage Examples
+### Examples
 
 #### 1. **Caesar Cipher**
 
@@ -98,4 +123,12 @@ python cipher.py vigenere joao ana
 Encrypted Text: xqpy
 Decrypted Text: joao
 ```
+
+## Contributing
+
+Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) first.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
