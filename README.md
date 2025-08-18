@@ -1,9 +1,5 @@
 # Cryptography Script Runner
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Python](https://img.shields.io/badge/python-3.6%2B-blue)
-![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
-
 A command-line tool implementing classical cryptographic algorithms for educational purposes and text encryption/decryption.
 
 ## Table of Contents
@@ -107,7 +103,7 @@ Ciphertext: "xqpy"
 
 2. Install dependencies:
    ```bash
-   pip install matplotlib
+   pip install -r requirements.txt
    ```
 
 3. Verify installation by running a test command:
@@ -170,43 +166,3 @@ Output:
 Encrypted Text: xqpy
 Decrypted Text: joao
 ```
-
-## Advanced Features
-
-### Frequency Analysis
-
-The MonoAlphabetic cipher implementation includes tools for frequency analysis:
-
-```python
-from monoalphabetic_cipher import count_characters, count_digraphs
-
-encrypted_text = "your_encrypted_text"
-count_characters(encrypted_text)  # Displays character frequency
-count_digraphs(encrypted_text)    # Displays digraph (2-letter combination) frequency
-```
-
-### Vigenère Analysis
-
-The Vigenère implementation includes tools for cryptanalysis:
-
-```python
-from vigenere_cipher import analyze_periodicity
-
-encrypted_text = "your_encrypted_text"
-analyze_periodicity(encrypted_text)  # Generates a plot for key length detection
-```
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
